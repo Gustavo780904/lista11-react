@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .countColor{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class Temporizador extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { time: 10 }
+            }
+            render() {  
+                let className;
+                if (this.state.time <= 3)
+                    className = 'countColor'
+                return <p className={className}>Contador: {this.state.time}</p>
+            }
+            componentDidMount() {
+                this.idTimer = setInterval(() => {
+                    (this.state.time > 0) ? this.setState({ time: this.state.time - 1 }) : clearInterval(this.idTimer);
+                }, 1000);
+            }
+            componentWillUnmount() {
+                clearInterval(this.idTimer)
+            }
+        }
+        ReactDOM.render(<Temporizador />, document.getElementById("root"))
+    </script>
+</body>
+</html>

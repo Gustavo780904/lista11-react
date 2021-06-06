@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+.ranking tr, td {
+border: 1px solid black;
+}
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class TableRanking extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {contents}
+            } 
+            componentDidMount() {
+                async function readRanking() {
+                    var file = await fetch("json/ranking.json");
+                    var contents = await file.json();
+                    contents.ranking.foreach(ranking=>{
+                        $("#nome").append("<td></td>").text(ranking.nome)
+                        $("#pontuacao").append("<td></td>").text(ranking.pontuacao)
+                    })
+                }
+            }
+            render() {
+                return (
+                    <div className="ranking">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td id="nome">Nome</td>
+                                    <td id="pontuacao">Pontuação</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.file.map(function (file) {
+                                        return (
+                                            <tr>
+                                                <td>{file.nome}</td>    
+                                                <td>{file.pontuacao}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                )
+            }
+            componentWillUnmount() {
+            }
+        }
+        ReactDOM.render(<TableRanking />, document.getElementById("root"))
+
+    </script>
+</body>
+
+</html>
