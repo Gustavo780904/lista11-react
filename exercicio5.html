@@ -49,9 +49,11 @@
                 };
                 return (
                     <div style={box}>
-                        <ul>
-                            <li> <a href="/index.html">Home</a></li>
-                        </ul>
+                        <div>
+                            <ul>
+                                <li> <a href="/index.html">Home</a></li>
+                            </ul>
+                        </div>
                         <img src={this.state.itens[this.state.pos].img} alt="" />
                         <h2>{this.state.itens[this.state.pos].nome}</h2>
                         <p style={configText}>{this.state.itens[this.state.pos].preco}</p>

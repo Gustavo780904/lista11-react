@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercício 1</title>
+    <title>Exercício 4</title>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <!-- Don't use this in production: -->
@@ -43,9 +43,11 @@
                 }
                 return (
                     <div style={container}>
+                        <div>
                         <ul>
                             <li> <a href="/index.html">Home</a></li>
                         </ul>
+                    </div>
                         <img src={this.state.itens.img} alt="" />
                         <h2>{this.state.itens.nome}</h2>
                         <p style={textStyle}>{this.state.itens.preco}</p>
