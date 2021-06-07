@@ -11,9 +11,10 @@
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
-.ranking tr, td {
-border: 1px solid black;
-}
+        .ranking tr,
+        td {
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -25,35 +26,43 @@ border: 1px solid black;
 
             constructor(props) {
                 super(props);
-                this.state = {contents}
-            } 
+                this.state = { users: [] }
+            }
             componentDidMount() {
-                async function readRanking() {
-                    var file = await fetch("json/ranking.json");
-                    var contents = await file.json();
-                    contents.ranking.foreach(ranking=>{
-                        $("#nome").append("<td></td>").text(ranking.nome)
-                        $("#pontuacao").append("<td></td>").text(ranking.pontuacao)
+                let users = [];
+                fetch('json/ranking.json')
+                    .then(file => file.json())
+                    .then(contents => {
+                        contents.users.forEach((user, i) => {
+                            users[i] = {"nome": user.nome, "pontuacao": user.pontuacao };
+                        });
+                        this.setState({ users: users });
                     })
+                    .catch(err => console.log(err));
                 }
+            
+            componentWillUnmount() {
+
             }
             render() {
+
                 return (
+
                     <div className="ranking">
                         <table>
                             <thead>
                                 <tr>
-                                    <td id="nome">Nome</td>
-                                    <td id="pontuacao">Pontuação</td>
+                                    <td>Nome</td>
+                                    <td>Pontuação</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    this.state.file.map(function (file) {
+                                    this.state.users.map(function (users) {
                                         return (
                                             <tr>
-                                                <td>{file.nome}</td>    
-                                                <td>{file.pontuacao}</td>
+                                                <td>{users.nome}</td>
+                                                <td>{users.pontuacao}</td>
                                             </tr>
                                         )
                                     })
@@ -63,8 +72,7 @@ border: 1px solid black;
                     </div>
                 )
             }
-            componentWillUnmount() {
-            }
+
         }
         ReactDOM.render(<TableRanking />, document.getElementById("root"))
 
