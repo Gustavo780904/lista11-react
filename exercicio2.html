@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercício 1</title>
+    <title>Exercício 2</title>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
-.ranking tr, td {
-border: 1px solid black;
-}
+        .ranking tr,
+        td {
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -25,14 +26,17 @@ border: 1px solid black;
 
             constructor(props) {
                 super(props);
-                this.state = { lista: [{ "nome": "Wilton Filho", "pontuacao": 10}, {"nome": "Maria José", "pontuacao": 20 }] }
-            } 
+                this.state = { lista: [{ "nome": "Wilton Filho", "pontuacao": 10 }, { "nome": "Maria José", "pontuacao": 20 }] }
+            }
             componentDidMount() {
 
             }
             render() {
                 return (
                     <div className="ranking">
+                        <ul>
+                            <li> <a href="/index.html">Home</a></li>
+                        </ul>
                         <table>
                             <thead>
                                 <tr>
@@ -45,7 +49,7 @@ border: 1px solid black;
                                     this.state.lista.map(function (lista) {
                                         return (
                                             <tr>
-                                                <td>{lista.nome}</td>    
+                                                <td>{lista.nome}</td>
                                                 <td>{lista.pontuacao}</td>
                                             </tr>
                                         )

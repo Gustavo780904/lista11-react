@@ -23,29 +23,34 @@
 
             constructor(props) {
                 super(props);
-                this.state = {itens: {
-                    img: "img/galaxy1.jpg",
-                    nome: "Samsung Galaxy S21",
-                    preco: "R$5.399,00"
-                }}
+                this.state = {
+                    itens: {
+                        img: "img/galaxy1.jpg",
+                        nome: "Samsung Galaxy S21",
+                        preco: "R$5.399,00"
+                    }
+                }
             }
-            
+
             render() {
-                const container ={
+                const container = {
                     width: "300px",
                     textAlign: "center"
                 }
                 const textStyle = {
-                    color:"blue",
-                    fontSize:"25px"
+                    color: "blue",
+                    fontSize: "25px"
                 }
                 return (
                     <div style={container}>
-                        <img src={this.state.itens.img} alt=""/>
+                        <ul>
+                            <li> <a href="/index.html">Home</a></li>
+                        </ul>
+                        <img src={this.state.itens.img} alt="" />
                         <h2>{this.state.itens.nome}</h2>
                         <p style={textStyle}>{this.state.itens.preco}</p>
 
-                        </div>
+                    </div>
 
                 )
             }

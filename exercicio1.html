@@ -11,7 +11,7 @@
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
-        .countColor{
+        .countColor {
             color: red;
         }
     </style>
@@ -30,7 +30,14 @@
                 let className;
                 if (this.state.time <= 3)
                     className = 'countColor'
-                return <p className={className}>Contador: {this.state.time}</p>
+                return (
+                    <div>
+                        <ul>
+                            <li> <a href="/index.html">Home</a></li>
+                        </ul>
+                        <p className={className}>Contador: {this.state.time}</p>
+                    </div>
+                )
             }
             componentDidMount() {
 
@@ -41,6 +48,7 @@
             componentWillUnmount() {
                 clearInterval(this.idTimer)
             }
+
         }
         ReactDOM.render(<Temporizador />, document.getElementById("root"))
 

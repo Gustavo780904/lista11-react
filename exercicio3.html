@@ -34,13 +34,13 @@
                     .then(file => file.json())
                     .then(contents => {
                         contents.users.forEach((user, i) => {
-                            users[i] = {"nome": user.nome, "pontuacao": user.pontuacao };
+                            users[i] = { "nome": user.nome, "pontuacao": user.pontuacao };
                         });
                         this.setState({ users: users });
                     })
                     .catch(err => console.log(err));
-                }
-            
+            }
+
             componentWillUnmount() {
 
             }
@@ -49,6 +49,9 @@
                 return (
 
                     <div className="ranking">
+                        <ul>
+                            <li> <a href="/index.html">Home</a></li>
+                        </ul>
                         <table>
                             <thead>
                                 <tr>
