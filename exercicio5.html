@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class SlideShow extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    pos: 0, itens: [
+                        { img: "img/galaxy1.jpg", nome: "Samsung Galaxy S21", preco: "R$5.399,00" },
+                        { img: "img/galaxy2.jpg", nome: "Samsung Galaxy S8", preco: "R$3.459,00" },
+                        { img: "img/galaxy3.jpg", nome: "Samsung Galaxy S7", preco: "R$2.290,00" }
+                    ]
+                }
+            }
+            componentDidMount() {
+                this.timeId = setInterval(() => this.slideShow(), 1000);
+            }
+            slideShow() {
+                if (this.state.pos < 2) this.setState({ pos: this.state.pos + 1 });
+                else this.setState({ pos: 0 });
+            }
+            render() {
+                const box = {
+                    width: "300px",
+                    textAlign: "center"
+                }
+                const configText = {
+                    color: "blue",
+                    fontSize: "25px"
+                };
+                return (
+                    <div style={box}>
+                        <img src={this.state.itens[this.state.pos].img} alt="" />
+                        <h2>{this.state.itens[this.state.pos].nome}</h2>
+                        <p style={configText}>{this.state.itens[this.state.pos].preco}</p>
+                    </div>
+                )
+            }
+
+        }
+        ReactDOM.render(<SlideShow />, document.getElementById("root"))
+
+    </script>
+</body>
+
+</html>

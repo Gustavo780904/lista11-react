@@ -19,33 +19,31 @@
     <div id="root"></div>
     <script type="text/babel">
 
-        class TableRanking extends React.Component {
+        class Itens extends React.Component {
 
             constructor(props) {
                 super(props);
-                this.state = { img }
+                this.state = {itens: {
+                    img: "img/galaxy1.jpg",
+                    nome: "Samsung Galaxy S21",
+                    preco: "R$5.399,00"
+                }}
             }
-            componentDidMount() {
-
-                fetch('img/galaxy1')
-                    .then()
-                    .then(contents => {
-
-                        this.setState({ users: users });
-                    })
-                    .catch(err => console.log(err));
-            }
-
-            componentWillUnmount() {
-
-            }
+            
             render() {
-
+                const container ={
+                    width: "300px",
+                    textAlign: "center"
+                }
+                const textStyle = {
+                    color:"blue",
+                    fontSize:"25px"
+                }
                 return (
-                    <div>
-                        <div>
-                            <img src="" alt=""></img>
-                            </div>
+                    <div style={container}>
+                        <img src={this.state.itens.img} alt=""/>
+                        <h2>{this.state.itens.nome}</h2>
+                        <p style={textStyle}>{this.state.itens.preco}</p>
 
                         </div>
 
@@ -53,7 +51,7 @@
             }
 
         }
-        ReactDOM.render(<TableRanking />, document.getElementById("root"))
+        ReactDOM.render(<Itens />, document.getElementById("root"))
 
     </script>
 </body>
